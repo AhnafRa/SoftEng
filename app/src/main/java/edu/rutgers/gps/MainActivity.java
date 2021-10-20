@@ -84,13 +84,15 @@ public class MainActivity extends AppCompatActivity {
             case PERMISSIONS_FINE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     updateGPS();
-                } else {
+                }
+                else {
                     Toast.makeText(this, "This app requires permission for location in order to work", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
         }
     }
+
 
 
     private void updateGPS() {
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
 
-        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             //permission has been given
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
@@ -111,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-        } else {
+        }
+        else {
             //the permission was not granted
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
